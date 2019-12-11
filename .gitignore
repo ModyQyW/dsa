@@ -2,6 +2,7 @@
 node_modules/
 unpackage/
 dist/
+*test*
 
 # local env files
 .env.local
