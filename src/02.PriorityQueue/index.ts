@@ -1,17 +1,15 @@
-// TODO: optimize
 /**
  * @description FIFO
  * @class PriorityQueue
  */
 class PriorityQueue {
   priorityQueue: any[] = []
-  compareFn: null | ((a: any, b: any) => number) = null
+  compareFn: null | ((a: any, b: any) => (0 | -1 | 1)) = null
 
-  constructor (...rest) {
+  constructor (compareFn?: ((a: any, b: any) => (0 | -1 | 1)), ...rest) {
     if (rest.length > 1) {
       throw new Error('Priority queue should initial with at most 1 param.')
     }
-    const compareFn = rest[0]
     if (
       compareFn !== undefined &&
       Object.prototype.toString.call(compareFn).toString().slice(8, -1) !== 'Function'
@@ -50,9 +48,61 @@ class PriorityQueue {
    * @memberof PriorityQueue
    */
   push (ele): void {
-    this.priorityQueue.push(ele)
-    if (this.compareFn !== null) {
-      this.priorityQueue.sort(this.compareFn)
+    if (this.compareFn === null) {
+      this.priorityQueue.push(ele)
+    } else {
+      const size = this.getSize()
+      if (size === 0) {
+        // none elements
+        this.priorityQueue.push(ele)
+      } else {
+        // at least 1 element
+        let start = 0
+        let end = size - 1
+        while (start < end) {
+          const total = start + end
+          if (total % 2 === 0) {
+            const mid = total / 2
+            switch (this.compareFn(this.priorityQueue[mid], ele)) {
+              case 1:
+                end = mid
+                break
+              default:
+                start = mid
+                break
+            }
+          } else {
+            const mid1 = (total - 1) / 2
+            const compareRes1 = this.compareFn(this.priorityQueue[mid1], ele)
+            if (compareRes1 === 1) {
+              end = mid1
+              continue
+            } else if (compareRes1 === 0) {
+              start = mid1
+              end = start
+              break
+            } else {
+              start = mid1
+            }
+            const mid2 = (total + 1) / 2
+            const compareRes2 = this.compareFn(this.priorityQueue[mid2], ele)
+            if (compareRes2 === 1) {
+              end = mid2
+            } else if (compareRes2 === 0) {
+              start = mid2
+              end = start
+              break
+            } else {
+              start = mid2
+              continue
+            }
+            if (end - start === 1) {
+              end = start
+            }
+          }
+        }
+        this.priorityQueue.splice(end + 1, 0, ele)
+      }
     }
   }
 
@@ -62,9 +112,6 @@ class PriorityQueue {
    */
   pop (): void {
     this.priorityQueue.shift()
-    if (this.compareFn !== null) {
-      this.priorityQueue.sort(this.compareFn)
-    }
   }
 
   /**
