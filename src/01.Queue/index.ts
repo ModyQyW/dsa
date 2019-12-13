@@ -7,30 +7,8 @@ class Queue {
 
   constructor (...rest) {
     if (rest.length > 0) {
-      throw new Error('Queue should initial with none params.')
+      throw new Error('Queue should be initialled with none params.')
     }
-  }
-
-  /**
-   * @description Returns reference to the first element in the queue
-   * @memberof Queue
-   */
-  front (): any {
-    if (this.isEmpty()) {
-      return null
-    }
-    return this.queue[0]
-  }
-
-  /**
-   * @description Returns reference to the last element in the queue
-   * @memberof Queue
-   */
-  back (): any {
-    if (this.isEmpty()) {
-      return null
-    }
-    return this.queue[this.getSize() - 1]
   }
 
   /**
@@ -47,6 +25,28 @@ class Queue {
    */
   pop (): void {
     this.queue.shift()
+  }
+
+  /**
+   * @description Returns reference to the first element in the queue
+   * @memberof Queue
+   */
+  getFirst (): any {
+    if (this.isEmpty()) {
+      return null
+    }
+    return this.queue[0]
+  }
+
+  /**
+   * @description Returns reference to the last element in the queue
+   * @memberof Queue
+   */
+  getLast (): any {
+    if (this.isEmpty()) {
+      return null
+    }
+    return this.queue[this.getSize() - 1]
   }
 
   /**
