@@ -7,19 +7,8 @@ class Stack {
 
   constructor (...rest) {
     if (rest.length > 0) {
-      throw new Error('Stack should initial with none params.')
+      throw new Error('Stack should be initialled with none params.')
     }
-  }
-
-  /**
-   * @description Returns reference to the top element in the stack
-   * @memberof Stack
-   */
-  top (): any {
-    if (this.isEmpty()) {
-      return null
-    }
-    return this.stack[this.getSize() - 1]
   }
 
   /**
@@ -36,6 +25,17 @@ class Stack {
    */
   pop (): void {
     this.stack.pop()
+  }
+
+  /**
+   * @description Returns reference to the top element in the stack
+   * @memberof Stack
+   */
+  getTop (): any {
+    if (this.isEmpty()) {
+      return null
+    }
+    return this.stack[this.getSize() - 1]
   }
 
   /**
