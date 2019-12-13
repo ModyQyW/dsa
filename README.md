@@ -12,10 +12,8 @@ English | [简体中文](README.CN.md)
   - 00 Stack
   - 01 Queue
   - 02 Priority Queue
-  - 03 Circular Queue
-  - 04 Singly Linked List
-  - 05 Doubly Linked List
-  - 06 Circular Linked List
+  - 03 Singly Linked List
+  - 04 Doubly Linked List
 - Tree
   - ?? ??
 - Graph
