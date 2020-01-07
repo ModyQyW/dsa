@@ -93,7 +93,7 @@ class PriorityQueue {
         }
       }
     }
-    // console.log('prioriryQueue', this.priorityQueue) // for development
+    // console.log('priorityQueue', this.priorityQueue) // for development
   }
 
   /**
