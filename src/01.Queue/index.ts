@@ -2,8 +2,8 @@
  * @description FIFO
  * @class Queue
  */
-class Queue {
-  queue: any[] = []
+class Queue<T = any> {
+  queue: T[] = []
 
   constructor (...rest) {
     if (rest.length > 0) {
@@ -15,7 +15,7 @@ class Queue {
    * @description Pushes the given element value to the end of the queue
    * @memberof Queue
    */
-  push (ele): void {
+  push (ele: T): void {
     this.queue.push(ele)
   }
 
@@ -31,7 +31,7 @@ class Queue {
    * @description Returns reference to the first element in the queue
    * @memberof Queue
    */
-  getFirst (): any {
+  getFirst (): T | null {
     if (this.isEmpty()) {
       return null
     }
@@ -42,7 +42,7 @@ class Queue {
    * @description Returns reference to the last element in the queue
    * @memberof Queue
    */
-  getLast (): any {
+  getLast (): T | null {
     if (this.isEmpty()) {
       return null
     }
@@ -66,4 +66,44 @@ class Queue {
   }
 }
 
-export default Queue
+const q = new Queue<number>()
+console.log('getFirst()', q.getFirst()) // null
+console.log('getLast()', q.getLast()) // null
+console.log('getSize()', q.getSize()) // 0
+console.log('isEmpty()', q.isEmpty()) // true
+console.log('\r')
+
+// console.log('push(\'a\')', q.push('a')) // Argument of type '"a"' is not assignable to parameter of type 'number'.
+console.log('push(0)', q.push(0)) // undefined
+console.log('getFirst()', q.getFirst()) // 0
+console.log('getLast()', q.getLast()) // 0
+console.log('getSize()', q.getSize()) // 1
+console.log('isEmpty()', q.isEmpty()) // false
+console.log('\r')
+
+console.log('push(1)', q.push(1)) // undefined
+console.log('getFirst()', q.getFirst()) // 0
+console.log('getLast()', q.getLast()) // 1
+console.log('getSize()', q.getSize()) // 2
+console.log('isEmpty()', q.isEmpty()) // false
+console.log('\r')
+
+console.log('pop()', q.pop()) // undefined
+console.log('getFirst()', q.getFirst()) // 1
+console.log('getLast()', q.getLast()) // 1
+console.log('getSize()', q.getSize()) // 1
+console.log('isEmpty()', q.isEmpty()) // false
+console.log('\r')
+
+console.log('pop()', q.pop()) // undefined
+console.log('getFirst()', q.getFirst()) // null
+console.log('getLast()', q.getLast()) // null
+console.log('getSize()', q.getSize()) // 0
+console.log('isEmpty()', q.isEmpty()) // true
+console.log('\r')
+
+console.log('pop()', q.pop()) // undefined
+console.log('getFirst()', q.getFirst()) // null
+console.log('getLast()', q.getLast()) // null
+console.log('getSize()', q.getSize()) // 0
+console.log('isEmpty()', q.isEmpty()) // true
