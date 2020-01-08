@@ -2,7 +2,7 @@
  * @description FILO
  * @class Stack
  */
-class Stack<T> {
+class Stack<T = any> {
   stack: T[] = []
 
   constructor (...rest) {
@@ -56,26 +56,38 @@ class Stack<T> {
 }
 
 const s = new Stack<number>()
-console.log('getTop()', s.getTop())
-console.log('getSize()', s.getSize())
-console.log('isEmpty()', s.isEmpty())
+console.log('getTop()', s.getTop()) // null
+console.log('getSize()', s.getSize()) // 0
+console.log('isEmpty()', s.isEmpty()) // true
 console.log('\r')
 
 // console.log('push(\'a\')', s.push('a')) // Argument of type '"a"' is not assignable to parameter of type 'number'.
-console.log('push(0)', s.push(0))
-console.log('getTop()', s.getTop())
-console.log('getSize()', s.getSize())
-console.log('isEmpty()', s.isEmpty())
+console.log('push(0)', s.push(0)) // undefined
+console.log('getTop()', s.getTop()) // 0
+console.log('getSize()', s.getSize()) // 1
+console.log('isEmpty()', s.isEmpty()) // false
 console.log('\r')
 
-console.log('pop()', s.pop())
-console.log('getTop()', s.getTop())
-console.log('getSize()', s.getSize())
-console.log('isEmpty()', s.isEmpty())
+console.log('push(1)', s.push(1)) // undefined
+console.log('getTop()', s.getTop()) // 1
+console.log('getSize()', s.getSize()) // 2
+console.log('isEmpty()', s.isEmpty()) // false
 console.log('\r')
 
-console.log('pop()', s.pop())
-console.log('getTop()', s.getTop())
-console.log('getSize()', s.getSize())
-console.log('isEmpty()', s.isEmpty())
+console.log('pop()', s.pop()) // undefined
+console.log('getTop()', s.getTop()) // 0
+console.log('getSize()', s.getSize()) // 1
+console.log('isEmpty()', s.isEmpty()) // false
+console.log('\r')
+
+console.log('pop()', s.pop()) // undefined
+console.log('getTop()', s.getTop()) // null
+console.log('getSize()', s.getSize()) // 0
+console.log('isEmpty()', s.isEmpty()) // true
+console.log('\r')
+
+console.log('pop()', s.pop()) // undefined
+console.log('getTop()', s.getTop()) // null
+console.log('getSize()', s.getSize()) // 0
+console.log('isEmpty()', s.isEmpty()) // true
 console.log('\r')
