@@ -2,22 +2,24 @@
  * @description FIFO
  * @class PriorityQueue
  */
-class PriorityQueue {
-  priorityQueue: any[] = []
-  compareFn: null | ((a: any, b: any) => (0 | -1 | 1)) = null
 
-  constructor (compareFn?: ((a: any, b: any) => (0 | -1 | 1)), ...rest) {
+import { isFunction, isUndefined, isNull } from 'lodash'
+
+class PriorityQueue<T = any> {
+  priorityQueue: T[] = []
+  compareFn: null | ((a: T, b: T) => (0 | -1 | 1)) = null
+
+  constructor (
+    compareFn?: ((a: T, b: T) => (0 | -1 | 1)),
+    ...rest
+  ) {
     if (rest.length > 1) {
       throw new Error('Priority queue should initial with at most 1 param.')
     }
-    if (
-      compareFn !== undefined &&
-      Object.prototype.toString.call(compareFn).toString().slice(8, -1) !== 'Function'
-    ) {
-      throw new Error('Priority queue should initial with none params or a compare function.')
-    }
-    if (compareFn !== undefined) {
+    if (isFunction(compareFn)) {
       this.compareFn = compareFn
+    } else if (!isUndefined(compareFn)) {
+      throw new Error('Priority queue should initial with none params or a compare function.')
     }
   }
 
@@ -25,8 +27,9 @@ class PriorityQueue {
    * @description Pushes the given element value to the end of the queue
    * @memberof PriorityQueue
    */
-  push (ele): void {
-    if (this.compareFn === null) {
+  push (ele: T): void {
+    if (isNull(this.compareFn)) {
+      // no compareFn => fallback to normal queue
       this.priorityQueue.push(ele)
     } else {
       const size = this.getSize()
@@ -108,7 +111,7 @@ class PriorityQueue {
    * @description Returns reference to the first element in the queue
    * @memberof PriorityQueue
    */
-  getFirst (): any {
+  getFirst (): T | null {
     if (this.isEmpty()) {
       return null
     }
@@ -119,7 +122,7 @@ class PriorityQueue {
    * @description Returns reference to the last element in the queue
    * @memberof PriorityQueue
    */
-  getLast (): any {
+  getLast (): T | null {
     if (this.isEmpty()) {
       return null
     }
@@ -143,45 +146,163 @@ class PriorityQueue {
   }
 }
 
-const compareFn = (x: number, y: number): (0 | -1 | 1) => {
+const priorityQueue0 = new PriorityQueue<number>()
+
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // null
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // null
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 0
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // true
+console.log('\r')
+
+console.log('priorityQueue0 push(1)', priorityQueue0.push(1)) // undefined
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // 1
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // 1
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 1
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue0 push(100)', priorityQueue0.push(100)) // undefined
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // 1
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // 100
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 2
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue0 push(50)', priorityQueue0.push(50)) // undefined
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // 1
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // 50
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 3
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue0 pop()', priorityQueue0.pop()) // undefined
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // 100
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // 50
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 2
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue0 pop()', priorityQueue0.pop()) // undefined
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // 50
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // 50
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 1
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue0 pop()', priorityQueue0.pop()) // undefined
+console.log('priorityQueue0 getFirst()', priorityQueue0.getFirst()) // null
+console.log('priorityQueue0 getLast()', priorityQueue0.getLast()) // null
+console.log('priorityQueue0 getSize()', priorityQueue0.getSize()) // 0
+console.log('priorityQueue0 isEmpty()', priorityQueue0.isEmpty()) // true
+console.log('\r')
+
+const compareFn0 = (x: number, y: number): (0 | -1 | 1) => {
   return x < y
     ? 1
     : (x > y ? -1 : 0)
 }
 
-// const compareFn = (x: number, y: number): (0 | -1 | 1) => {
-//   return x < y
-//     ? -1
-//     : (x > y ? 1 : 0)
-// }
+const compareFn1 = (x: number, y: number): (0 | -1 | 1) => {
+  return x < y
+    ? -1
+    : (x > y ? 1 : 0)
+}
 
-const priorityQueue = new PriorityQueue(compareFn)
+const priorityQueue1 = new PriorityQueue<number>(compareFn0)
 
-// const priorityQueue = new PriorityQueue()
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // null
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // null
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 0
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // true
+console.log('\r')
 
-console.log('getFirst', priorityQueue.getFirst())
-console.log('getLast', priorityQueue.getLast())
-console.log('getSize', priorityQueue.getSize())
-console.log('isEmpty', priorityQueue.isEmpty())
-console.log('\r\n')
+console.log('priorityQueue1 push(1)', priorityQueue1.push(1)) // undefined
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // 1
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // 1
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 1
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // false
+console.log('\r')
 
-console.log('push 1', priorityQueue.push(1))
-console.log('getFirst', priorityQueue.getFirst())
-console.log('getLast', priorityQueue.getLast())
-console.log('getSize', priorityQueue.getSize())
-console.log('isEmpty', priorityQueue.isEmpty())
-console.log('\r\n')
+console.log('priorityQueue1 push(100)', priorityQueue1.push(100)) // undefined
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // 100
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // 1
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 2
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // false
+console.log('\r')
 
-console.log('push 100', priorityQueue.push(100))
-console.log('getFirst', priorityQueue.getFirst())
-console.log('getLast', priorityQueue.getLast())
-console.log('getSize', priorityQueue.getSize())
-console.log('isEmpty', priorityQueue.isEmpty())
-console.log('\r\n')
+console.log('priorityQueue1 push(50)', priorityQueue1.push(50)) // undefined
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // 100
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // 1
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 3
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // false
+console.log('\r')
 
-console.log('push 50', priorityQueue.push(50))
-console.log('getFirst', priorityQueue.getFirst())
-console.log('getLast', priorityQueue.getLast())
-console.log('getSize', priorityQueue.getSize())
-console.log('isEmpty', priorityQueue.isEmpty())
-console.log('\r\n')
+console.log('priorityQueue1 pop()', priorityQueue1.pop()) // undefined
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // 50
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // 1
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 2
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue1 pop()', priorityQueue1.pop()) // undefined
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // 1
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // 1
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 1
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue1 pop()', priorityQueue1.pop()) // undefined
+console.log('priorityQueue1 getFirst()', priorityQueue1.getFirst()) // null
+console.log('priorityQueue1 getLast()', priorityQueue1.getLast()) // null
+console.log('priorityQueue1 getSize()', priorityQueue1.getSize()) // 0
+console.log('priorityQueue1 isEmpty()', priorityQueue1.isEmpty()) // true
+console.log('\r')
+
+const priorityQueue2 = new PriorityQueue<number>(compareFn1)
+
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // null
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // null
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 0
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // true
+console.log('\r')
+
+console.log('priorityQueue2 push(1)', priorityQueue2.push(1)) // undefined
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // 1
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // 1
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 1
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue2 push(100)', priorityQueue2.push(100)) // undefined
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // 1
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // 100
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 2
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue2 push(50)', priorityQueue2.push(50)) // undefined
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // 1
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // 100
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 3
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue2 pop()', priorityQueue2.pop()) // undefined
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // 50
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // 100
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 2
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue2 pop()', priorityQueue2.pop()) // undefined
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // 100
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // 100
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 1
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // false
+console.log('\r')
+
+console.log('priorityQueue2 pop()', priorityQueue2.pop()) // undefined
+console.log('priorityQueue2 getFirst()', priorityQueue2.getFirst()) // null
+console.log('priorityQueue2 getLast()', priorityQueue2.getLast()) // null
+console.log('priorityQueue2 getSize()', priorityQueue2.getSize()) // 0
+console.log('priorityQueue2 isEmpty()', priorityQueue2.isEmpty()) // true
