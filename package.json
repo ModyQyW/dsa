@@ -6,9 +6,13 @@
   "private": true,
   "license": "Apache-2.0",
   "scripts": {
-    "lint": "eslint src --ext .js,.ts"
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
     "eslint": "^6.8.0",
@@ -31,7 +35,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "./src/**/*.{js,ts}": [
+    "./src/**/*.ts": [
       "eslint",
       "git add"
     ]
