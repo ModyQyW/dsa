@@ -2,8 +2,8 @@
  * @description FILO
  * @class Stack
  */
-class Stack {
-  stack: any[] = []
+class Stack<T> {
+  stack: T[] = []
 
   constructor (...rest) {
     if (rest.length > 0) {
@@ -15,7 +15,7 @@ class Stack {
    * @description Pushes the given element to the top of the stack
    * @memberof Stack
    */
-  push (ele): void {
+  push (ele: T): void {
     this.stack.push(ele)
   }
 
@@ -31,7 +31,7 @@ class Stack {
    * @description Returns reference to the top element in the stack
    * @memberof Stack
    */
-  getTop (): any {
+  getTop (): T | null {
     if (this.isEmpty()) {
       return null
     }
@@ -55,4 +55,27 @@ class Stack {
   }
 }
 
-export default Stack
+const s = new Stack<number>()
+console.log('getTop()', s.getTop())
+console.log('getSize()', s.getSize())
+console.log('isEmpty()', s.isEmpty())
+console.log('\r')
+
+// console.log('push(\'a\')', s.push('a')) // Argument of type '"a"' is not assignable to parameter of type 'number'.
+console.log('push(0)', s.push(0))
+console.log('getTop()', s.getTop())
+console.log('getSize()', s.getSize())
+console.log('isEmpty()', s.isEmpty())
+console.log('\r')
+
+console.log('pop()', s.pop())
+console.log('getTop()', s.getTop())
+console.log('getSize()', s.getSize())
+console.log('isEmpty()', s.isEmpty())
+console.log('\r')
+
+console.log('pop()', s.pop())
+console.log('getTop()', s.getTop())
+console.log('getSize()', s.getSize())
+console.log('isEmpty()', s.isEmpty())
+console.log('\r')
