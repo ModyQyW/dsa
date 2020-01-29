@@ -3,7 +3,7 @@
  * @class SinglyLinkedList
  */
 
-import { isFunction, isUndefined, isNull, isNumber } from 'lodash'
+import { isUndefined, isNumber } from 'lodash'
 
 class SinglyLinkedList<T> {
   list: T[] = []
