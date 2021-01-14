@@ -2,30 +2,32 @@
   "name": "dsa",
   "version": "0.0.0",
   "description": "Data structures and algorithms with TypeScript.",
-  "author": "ModyQyW <wurui7@mail3.sysu.edu.cn>",
+  "author": {
+    "email": "wurui7@mail3.sysu.edu.cn",
+    "name": "ModyQyW",
+    "url": "https://modyqyw.github.io"
+  },
   "private": true,
   "license": "Apache-2.0",
   "scripts": {
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "yarn lint:json && yarn lint:markdown && yarn lint:script",
+    "lint:json": "prettier ./**/*.json --write",
+    "lint:markdown": "markdownlint . --fix",
+    "lint:script": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix"
   },
   "dependencies": {
-    "lodash-es": "^4.17.15"
+    "lodash-es": "~4.17.20"
   },
   "devDependencies": {
-    "@modyqyw/eslint-config": "^1.8.6",
-    "@modyqyw/prettier-config": "^1.1.3",
-    "@types/lodash-es": "^4.17.3",
-    "eslint": "^7.10.0",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "prettier": "^2.1.2",
-    "typescript": "^4.0.3"
-  },
-  "prettier": {
-    "extends": "@modyqyw/prettier-config"
-  },
-  "eslintConfig": {
-    "extends": "@modyqyw"
+    "@commitlint/cli": "~11.0.0",
+    "@modyqyw/fabric": "~1.11.1",
+    "@types/lodash-es": "~4.17.4",
+    "eslint": "~7.17.0",
+    "husky": "~4.3.7",
+    "lint-staged": "~10.5.3",
+    "markdownlint-cli": "~0.26.0",
+    "prettier": "~2.2.1",
+    "typescript": "~4.1.3"
   },
   "husky": {
     "hooks": {
@@ -34,9 +36,8 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "eslint --fix"
-    ]
+    "*.json": "prettier --write",
+    "*.markdown": "markdownlint --fix",
+    "*.{js,jsx,ts,tsx,vue}": "eslint --fix"
   }
 }
