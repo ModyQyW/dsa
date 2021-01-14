@@ -1,51 +1,33 @@
-# Data Structure and Algorithms
+# 数据结构与算法
 
-Data structures and algorithms with TypeScript. Still updating.
+用 TypeScript 呈现的数据结构与算法。更新中。
 
-English | [简体中文](README.CN.md)
+## 数据结构部分
 
-## Data Structure Part
+数组 Array 和 串 String 内置，映射 Map、集合 Set 已包含在 ES6+ 标准中。
 
-`Array` and `String` are presets. `Map` and `Set` are included in ES6+.
-
-- Linear List
-  - 00 Stack
-  - 01 Queue
-  - 02 Priority Queue
-  - 03 Singly Linked List
-  - 04 Doubly Linked List
-- Tree
+- 线性表
+  - 00 栈/堆栈
+  - 01 队列
+  - 02 优先队列
+  - 03 单向链表
+  - 04 双向链表
+- 树
   - ?? ??
-- Graph
+- 图
   - ?? ??
 
-## Algorithms Part
+## 算法部分
 
-- Complexity
-- Enumeration
-- Greedy Algorithm
-- Divide and Conquer Algorithm
-- Backtracking Algorithm
-- Sort Algorithm
-- Search Algorithm
-- Dynamic Programing
-- Number Theory
-- Graph Theory
-- Heuristic Algorithm
-- Misc
-
-## Contributing
-
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
-
-## Authors
-
-- **Rui Wu** - *Initial work* - [ModyQyW](https://github.com/ModyQyW)
-
-See also the list of [contributors](https://github.com/ModyQyW/dsa/contributors) who participated in this project.
-
-## License
-
-[Apache-2.0](./LICENSE)
-
-Copyright (c) 2019-present ModyQyW
+- 复杂度
+- 枚举/穷举/暴力
+- 贪心算法
+- 分治法
+- 回溯法
+- 排序算法
+- 搜索算法
+- 动态规划
+- 数论
+- 图论
+- 启发式算法
+- 杂项
