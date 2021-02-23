@@ -50,19 +50,3 @@ configs.push(
 );
 
 export default configs;
-
-// export default {
-//   input: path.resolve('src', 'index.ts'),
-//   output: {
-//     dir: 'dist',
-//     format: 'umd',
-//     plugins: [
-//       terser({
-//         format: {
-//           comments: false,
-//         },
-//       }),
-//     ],
-//   },
-//   plugins: [typescript()],
-// };
