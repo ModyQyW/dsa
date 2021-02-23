@@ -1,62 +1,70 @@
-// /**
-//  * @description FIFO
-//  * @class Queue
-//  */
-// class Queue<T = any> {
-//   queue: T[] = [];
-//   constructor(...rest) {
-//     if (rest.length > 0) {
-//       throw new Error('Queue should be initialled with none params.');
-//     }
-//   }
-//   /**
-//    * @description Pushes the given element value to the end of the queue
-//    * @memberof Queue
-//    */
-//   push(ele: T): void {
-//     this.queue.push(ele);
-//   }
-//   /**
-//    * @description Removes an element from the front of the queue
-//    * @memberof Queue
-//    */
-//   pop(): void {
-//     this.queue.shift();
-//   }
-//   /**
-//    * @description Returns reference to the first element in the queue
-//    * @memberof Queue
-//    */
-//   getFirst(): T | null {
-//     if (this.isEmpty()) {
-//       return null;
-//     }
-//     return this.queue[0];
-//   }
-//   /**
-//    * @description Returns reference to the last element in the queue
-//    * @memberof Queue
-//    */
-//   getLast(): T | null {
-//     if (this.isEmpty()) {
-//       return null;
-//     }
-//     return this.queue[this.getSize() - 1];
-//   }
-//   /**
-//    * @description Returns the number of elements in the queue
-//    * @memberof Queue
-//    */
-//   getSize(): number {
-//     return this.queue.length;
-//   }
-//   /**
-//    * @description Checks if the queue has no elements
-//    * @memberof Queue
-//    */
-//   isEmpty(): boolean {
-//     return this.getSize() === 0;
-//   }
-// }
+/* eslint-disable import/prefer-default-export */
+import { isNumber } from 'lodash-es';
 
-// export default Queue;
+export class Queue<T = any> {
+  queue: T[] = [];
+
+  /**
+   * @desc 元素入队
+   * @memberof Queue
+   */
+  push(...rest: T[]): void {
+    if (rest.length === 0) {
+      throw new Error('需要提供入队元素');
+    }
+    rest.forEach((item) => {
+      this.queue.push(item);
+    });
+  }
+
+  /**
+   * @description 队首元素出队
+   * @memberof Queue
+   */
+  pop(number?: number) {
+    if (number === undefined) {
+      this.queue.shift();
+    } else if (isNumber(number) && number >= 1) {
+      if (number.toFixed(2).slice(-2) !== '00') {
+        throw new Error('参数不合法');
+      }
+      for (let i = 0; i < number; i += 1) {
+        this.queue.shift();
+      }
+    } else {
+      throw new Error('参数不合法');
+    }
+  }
+
+  /**
+   * @description 获取队内元素数量
+   * @memberof Queue
+   */
+  getSize() {
+    return this.queue.length;
+  }
+
+  /**
+   * @description 检查队列是否为空
+   * @memberof Queue
+   */
+  isEmpty() {
+    return this.getSize() === 0;
+  }
+
+  /**
+   * @description 获取队首元素
+   * @memberof Queue
+   */
+  getFirst() {
+    return this.isEmpty() ? null : this.queue[0];
+  }
+
+  /**
+   * @description 获取队尾元素
+   * @memberof Queue
+   */
+  getLast() {
+    return this.isEmpty() ? null : this.queue[this.getSize() - 1];
+  }
+}
