@@ -1,4 +1,6 @@
 /* eslint-disable import/prefer-default-export */
+import { isNumber } from 'lodash-es';
+
 export class Stack<T = any> {
   stack: T[] = [];
 
@@ -6,9 +8,9 @@ export class Stack<T = any> {
    * @desc 元素入栈
    * @memberof Stack
    */
-  push(...rest) {
+  push(...rest: T[]) {
     if (rest.length === 0) {
-      throw new Error('需要提供入栈元素。');
+      throw new Error('需要提供入栈元素');
     }
     rest.forEach((item) => {
       this.stack.push(item);
@@ -22,7 +24,7 @@ export class Stack<T = any> {
   pop(number?: number) {
     if (number === undefined) {
       this.stack.pop();
-    } else if (typeof number === 'number' && number >= 1) {
+    } else if (isNumber(number) && number >= 1) {
       if (number.toFixed(2).slice(-2) !== '00') {
         throw new Error('参数不合法');
       }
@@ -30,7 +32,7 @@ export class Stack<T = any> {
         this.stack.pop();
       }
     } else {
-      throw new Error('参数不合法。');
+      throw new Error('参数不合法');
     }
   }
 
