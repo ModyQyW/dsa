@@ -1,3 +1,4 @@
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
@@ -37,7 +38,7 @@ configs.push(
         ],
       },
     ],
-    plugins: [typescript()],
+    plugins: [nodeResolve(), typescript()],
   },
   {
     input: path.resolve('src', 'index.ts'),
