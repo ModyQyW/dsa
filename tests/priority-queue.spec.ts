@@ -5,11 +5,6 @@ describe('PriorityQueue 01', () => {
 
   it('initial state', () => {
     expect(() => {
-      const queue = new PriorityQueue<string | number>((a, b) => {
-        return 0;
-      }, 'test');
-    }).toThrow('优先队列最多使用一个参数初始化');
-    expect(() => {
       // @ts-ignore
       const queue = new PriorityQueue<string | number>(null);
     }).toThrow(
