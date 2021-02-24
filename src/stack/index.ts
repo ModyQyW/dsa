@@ -5,6 +5,22 @@ export class Stack<T = any> {
   stack: T[] = [];
 
   /**
+   * @desc 获取栈内元素数量
+   * @memberof Stack
+   */
+  getSize() {
+    return this.stack.length;
+  }
+
+  /**
+   * @desc 检查栈是否为空
+   * @memberof Stack
+   */
+  isEmpty() {
+    return this.getSize() === 0;
+  }
+
+  /**
    * @desc 元素入栈
    * @memberof Stack
    */
@@ -34,22 +50,6 @@ export class Stack<T = any> {
     } else {
       throw new Error('参数不合法');
     }
-  }
-
-  /**
-   * @desc 获取栈内元素数量
-   * @memberof Stack
-   */
-  getSize() {
-    return this.stack.length;
-  }
-
-  /**
-   * @desc 检查栈是否为空
-   * @memberof Stack
-   */
-  isEmpty() {
-    return this.getSize() === 0;
   }
 
   /**

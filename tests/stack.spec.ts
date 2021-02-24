@@ -12,7 +12,7 @@ describe('Stack', () => {
   });
 
   it('push nothing', () => {
-    expect(() => stack.push()).toThrow('需要提供入栈元素。');
+    expect(() => stack.push()).toThrow('需要提供入栈元素');
   });
 
   it('pop float', () => {
@@ -38,6 +38,6 @@ describe('Stack', () => {
     expect(stack.clear()).toBeUndefined();
     expect(stack.getSize()).toBe(0);
     expect(stack.isEmpty()).toBe(true);
-    expect(stack.getTop()).toBe(null);
+    expect(stack.getTop()).toBeNull();
   });
 });
