@@ -4,42 +4,22 @@ import { isNumber } from 'lodash-es';
 export class Stack<T = any> {
   stack: T[] = [];
 
-  /**
-   * @desc 获取栈内元素数量
-   * @memberof Stack
-   */
+  /** 获取栈内元素数量 */
   getSize() {
     return this.stack.length;
   }
 
-  /**
-   * @desc 检查栈是否为空
-   * @memberof Stack
-   */
+  /** 检查栈是否为空 */
   isEmpty() {
     return this.getSize() === 0;
   }
 
-  /**
-   * @desc 获取栈顶元素
-   * @memberof Stack
-   */
+  /** 获取栈顶元素 */
   getTop() {
     return this.isEmpty() ? null : this.stack[this.getSize() - 1];
   }
 
-  /**
-   * @desc 清空栈
-   * @memberof Stack
-   */
-  clear() {
-    this.stack = [];
-  }
-
-  /**
-   * @desc 元素入栈
-   * @memberof Stack
-   */
+  /** 元素入栈 */
   push(...rest: T[]) {
     if (rest.length === 0) {
       throw new Error('需要提供入栈元素');
@@ -49,10 +29,7 @@ export class Stack<T = any> {
     });
   }
 
-  /**
-   * @desc 元素出栈
-   * @memberof Stack
-   */
+  /** 元素出栈 */
   pop(number?: number) {
     if (number === undefined) {
       this.stack.pop();
@@ -66,5 +43,10 @@ export class Stack<T = any> {
     } else {
       throw new Error('参数不合法');
     }
+  }
+
+  /** 清空栈 */
+  clear() {
+    this.stack = [];
   }
 }

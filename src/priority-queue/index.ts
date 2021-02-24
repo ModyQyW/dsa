@@ -2,11 +2,13 @@
 import { isFunction, isNumber } from 'lodash-es';
 
 export class PriorityQueue<T = any> {
-  priorityQueue: T[] = [];
+  priorityQueue: T[];
 
-  compareFn: null | ((a: T, b: T) => 0 | -1 | 1) = null;
+  compareFn: null | ((a: T, b: T) => 0 | -1 | 1);
 
   constructor(compareFn?: (a: T, b: T) => 0 | -1 | 1) {
+    this.priorityQueue = [];
+    this.compareFn = null;
     if (isFunction(compareFn)) {
       this.compareFn = compareFn;
     } else if (compareFn !== undefined) {
@@ -16,42 +18,27 @@ export class PriorityQueue<T = any> {
     }
   }
 
-  /**
-   * @description 获取队内元素数量
-   * @memberof PriorityQueue
-   */
+  /** 获取队列内元素数量 */
   getSize() {
     return this.priorityQueue.length;
   }
 
-  /**
-   * @description 检查队列是否为空
-   * @memberof PriorityQueue
-   */
+  /** 检查队列是否为空 */
   isEmpty() {
     return this.getSize() === 0;
   }
 
-  /**
-   * @description 获取队首元素
-   * @memberof PriorityQueue
-   */
+  /** 获取队首元素 */
   getFirst() {
     return this.isEmpty() ? null : this.priorityQueue[0];
   }
 
-  /**
-   * @description 获取队尾元素
-   * @memberof PriorityQueue
-   */
+  /** 获取队尾元素 */
   getLast() {
     return this.isEmpty() ? null : this.priorityQueue[this.getSize() - 1];
   }
 
-  /**
-   * @description 元素入队
-   * @memberof PriorityQueue
-   */
+  /** 元素入队 */
   push(...rest: T[]) {
     if (rest.length === 0) {
       throw new Error('需要提供入队元素');
@@ -64,10 +51,7 @@ export class PriorityQueue<T = any> {
     }
   }
 
-  /**
-   * @description 队首元素出队
-   * @memberof PriorityQueue
-   */
+  /** 队首元素出队 */
   pop(number?: number) {
     if (number === undefined) {
       this.priorityQueue.shift();
@@ -83,10 +67,7 @@ export class PriorityQueue<T = any> {
     }
   }
 
-  /**
-   * @description 清空队列
-   * @memberof PriorityQueue
-   */
+  /** 清空队列 */
   clear() {
     this.priorityQueue = [];
   }
