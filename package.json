@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@modyqyw/fabric": "~1.16.1",
+    "@rollup/plugin-node-resolve": "~11.2.0",
     "@types/jest": "~26.0.20",
     "@types/lodash-es": "~4.14.4",
     "@types/node": "~14.14.31",
