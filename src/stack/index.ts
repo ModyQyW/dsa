@@ -21,6 +21,22 @@ export class Stack<T = any> {
   }
 
   /**
+   * @desc 获取栈顶元素
+   * @memberof Stack
+   */
+  getTop() {
+    return this.isEmpty() ? null : this.stack[this.getSize() - 1];
+  }
+
+  /**
+   * @desc 清空栈
+   * @memberof Stack
+   */
+  clear() {
+    this.stack = [];
+  }
+
+  /**
    * @desc 元素入栈
    * @memberof Stack
    */
@@ -50,21 +66,5 @@ export class Stack<T = any> {
     } else {
       throw new Error('参数不合法');
     }
-  }
-
-  /**
-   * @desc 获取栈顶元素
-   * @memberof Stack
-   */
-  getTop() {
-    return this.isEmpty() ? null : this.stack[this.getSize() - 1];
-  }
-
-  /**
-   * @desc 清空栈
-   * @memberof Stack
-   */
-  clear() {
-    this.stack = [];
   }
 }

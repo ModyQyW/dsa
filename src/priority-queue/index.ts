@@ -33,6 +33,22 @@ export class PriorityQueue<T = any> {
   }
 
   /**
+   * @description 获取队首元素
+   * @memberof PriorityQueue
+   */
+  getFirst() {
+    return this.isEmpty() ? null : this.priorityQueue[0];
+  }
+
+  /**
+   * @description 获取队尾元素
+   * @memberof PriorityQueue
+   */
+  getLast() {
+    return this.isEmpty() ? null : this.priorityQueue[this.getSize() - 1];
+  }
+
+  /**
    * @description 元素入队
    * @memberof PriorityQueue
    */
@@ -65,22 +81,6 @@ export class PriorityQueue<T = any> {
     } else {
       throw new Error('参数不合法');
     }
-  }
-
-  /**
-   * @description 获取队首元素
-   * @memberof PriorityQueue
-   */
-  getFirst() {
-    return this.isEmpty() ? null : this.priorityQueue[0];
-  }
-
-  /**
-   * @description 获取队尾元素
-   * @memberof PriorityQueue
-   */
-  getLast() {
-    return this.isEmpty() ? null : this.priorityQueue[this.getSize() - 1];
   }
 
   /**
