@@ -1,5 +1,5 @@
 {
-  "name": "dsa",
+  "name": "@modyqyw/dsa",
   "version": "0.0.0",
   "description": "Data structures and algorithms with TypeScript.",
   "author": {
@@ -7,8 +7,8 @@
     "name": "ModyQyW",
     "url": "https://modyqyw.github.io"
   },
-  "private": true,
-  "license": "Apache-2.0",
+  "private": false,
+  "license": "MIT",
   "files": [
     "dist"
   ],
@@ -23,6 +23,16 @@
       "require": "./dist/index.cjs.js"
     },
     "./": "./"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/ModyQyW/dsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ModyQyW/dsa.git"
   },
   "scripts": {
     "build": "rollup -c",
