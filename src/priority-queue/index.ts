@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-continue, import/prefer-default-export */
 import { isFunction, isNumber } from 'lodash-es';
 
