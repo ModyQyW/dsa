@@ -2,6 +2,12 @@
 
 用 TypeScript 呈现的数据结构与算法。更新中。
 
+支持 cjs，esm 和 iife，安装依赖或使用 CDN 引入后可以体验。
+
+```shell
+npm i @modyqyw/dsa
+```
+
 ## 数据结构部分
 
 数组 Array 和字符串 String 内置，映射 Map、集合 Set 已包含在 ES6+ 标准中。
