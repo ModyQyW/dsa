@@ -1,142 +1,96 @@
-// /* eslint-disable no-continue */
-// /**
-//  * @description FIFO
-//  * @class PriorityQueue
-//  */
+/* eslint-disable no-continue, import/prefer-default-export */
+import { isFunction, isNumber } from 'lodash-es';
 
-// import { isFunction } from 'lodash-es';
+export class PriorityQueue<T = any> {
+  priorityQueue: T[] = [];
 
-// class PriorityQueue<T = any> {
-//   priorityQueue: T[] = [];
-//   compareFn: null | ((a: T, b: T) => 0 | -1 | 1) = null;
-//   constructor(compareFn?: (a: T, b: T) => 0 | -1 | 1, ...rest) {
-//     if (rest.length > 1) {
-//       throw new Error('Priority queue should initial with at most 1 param.');
-//     }
-//     if (isFunction(compareFn)) {
-//       this.compareFn = compareFn;
-//     } else if (compareFn !== undefined) {
-//       throw new Error(
-//         'Priority queue should initial with none params or a compare function.',
-//       );
-//     }
-//   }
-//   /**
-//    * @description Pushes the given element value to the end of the queue
-//    * @memberof PriorityQueue
-//    */
-//   push(ele: T): void {
-//     if (this.compareFn === null) {
-//       // no compareFn => fallback to normal queue
-//       this.priorityQueue.push(ele);
-//     } else {
-//       const size = this.getSize();
-//       if (size === 0) {
-//         // none elements
-//         this.priorityQueue.push(ele);
-//       } else {
-//         // at least 1 element
-//         let start = 0;
-//         let end = size - 1;
-//         if (start === end) {
-//           switch (this.compareFn(this.priorityQueue[start], ele)) {
-//             case 1:
-//               this.priorityQueue.unshift(ele);
-//               break;
-//             default:
-//               this.priorityQueue.push(ele);
-//               break;
-//           }
-//         } else {
-//           while (start < end) {
-//             const total = start + end;
-//             if (total % 2 === 0) {
-//               const mid = total / 2;
-//               switch (this.compareFn(this.priorityQueue[mid], ele)) {
-//                 case 1:
-//                   end = mid;
-//                   break;
-//                 default:
-//                   start = mid;
-//                   break;
-//               }
-//             } else {
-//               const mid1 = (total - 1) / 2;
-//               const compareRes1 = this.compareFn(this.priorityQueue[mid1], ele);
-//               if (compareRes1 === 1) {
-//                 end = mid1;
-//                 continue;
-//               } else if (compareRes1 === 0) {
-//                 start = mid1;
-//                 end = start;
-//                 break;
-//               } else {
-//                 start = mid1;
-//               }
-//               const mid2 = (total + 1) / 2;
-//               const compareRes2 = this.compareFn(this.priorityQueue[mid2], ele);
-//               if (compareRes2 === 1) {
-//                 end = mid2;
-//               } else if (compareRes2 === 0) {
-//                 start = mid2;
-//                 end = start;
-//                 break;
-//               } else {
-//                 start = mid2;
-//                 continue;
-//               }
-//               if (end - start === 1) {
-//                 end = start;
-//               }
-//             }
-//           }
-//           this.priorityQueue.splice(end + 1, 0, ele);
-//         }
-//       }
-//     }
-//     // console.log('priorityQueue', this.priorityQueue) // for development
-//   }
-//   /**
-//    * @description Removes an element from the front of the queue
-//    * @memberof PriorityQueue
-//    */
-//   pop(): void {
-//     this.priorityQueue.shift();
-//   }
-//   /**
-//    * @description Returns reference to the first element in the queue
-//    * @memberof PriorityQueue
-//    */
-//   getFirst(): T | null {
-//     if (this.isEmpty()) {
-//       return null;
-//     }
-//     return this.priorityQueue[0];
-//   }
-//   /**
-//    * @description Returns reference to the last element in the queue
-//    * @memberof PriorityQueue
-//    */
-//   getLast(): T | null {
-//     if (this.isEmpty()) {
-//       return null;
-//     }
-//     return this.priorityQueue[this.getSize() - 1];
-//   }
-//   /**
-//    * @description Returns the number of elements in the queue
-//    * @memberof PriorityQueue
-//    */
-//   getSize(): number {
-//     return this.priorityQueue.length;
-//   }
-//   /**
-//    * @description Checks if the queue has no elements
-//    * @memberof PriorityQueue
-//    */
-//   isEmpty(): boolean {
-//     return this.getSize() === 0;
-//   }
-// }
+  compareFn: null | ((a: T, b: T) => 0 | -1 | 1) = null;
 
-// export default PriorityQueue;
+  constructor(compareFn?: (a: T, b: T) => 0 | -1 | 1, ...rest) {
+    if (rest.length !== 0) {
+      throw new Error('优先队列最多使用一个参数初始化');
+    }
+    if (isFunction(compareFn)) {
+      this.compareFn = compareFn;
+    } else if (compareFn !== undefined) {
+      throw new Error(
+        '优先队列最多使用一个参数初始化，参数应当是一个方法，它接收两个参数，并返回 0，-1 或 1 表示比较结果',
+      );
+    }
+  }
+
+  /**
+   * @description 获取队内元素数量
+   * @memberof PriorityQueue
+   */
+  getSize() {
+    return this.priorityQueue.length;
+  }
+
+  /**
+   * @description 检查队列是否为空
+   * @memberof PriorityQueue
+   */
+  isEmpty() {
+    return this.getSize() === 0;
+  }
+
+  /**
+   * @description 元素入队
+   * @memberof PriorityQueue
+   */
+  push(...rest: T[]): void {
+    if (rest.length === 0) {
+      throw new Error('需要提供入队元素');
+    }
+    rest.forEach((item) => {
+      this.priorityQueue.push(item);
+    });
+    if (this.compareFn !== null) {
+      this.priorityQueue.sort(this.compareFn);
+    }
+  }
+
+  /**
+   * @description 队首元素出队
+   * @memberof PriorityQueue
+   */
+  pop(number?: number) {
+    if (number === undefined) {
+      this.priorityQueue.shift();
+    } else if (isNumber(number) && number >= 1) {
+      if (number.toFixed(2).slice(-2) !== '00') {
+        throw new Error('参数不合法');
+      }
+      for (let i = 0; i < number; i += 1) {
+        this.priorityQueue.shift();
+      }
+    } else {
+      throw new Error('参数不合法');
+    }
+  }
+
+  /**
+   * @description 获取队首元素
+   * @memberof PriorityQueue
+   */
+  getFirst() {
+    return this.isEmpty() ? null : this.priorityQueue[0];
+  }
+
+  /**
+   * @description 获取队尾元素
+   * @memberof PriorityQueue
+   */
+  getLast() {
+    return this.isEmpty() ? null : this.priorityQueue[this.getSize() - 1];
+  }
+
+  /**
+   * @description 清空队列
+   * @memberof PriorityQueue
+   */
+  clear() {
+    this.priorityQueue = [];
+  }
+}
