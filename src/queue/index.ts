@@ -5,6 +5,22 @@ export class Queue<T = any> {
   queue: T[] = [];
 
   /**
+   * @description 获取队内元素数量
+   * @memberof Queue
+   */
+  getSize() {
+    return this.queue.length;
+  }
+
+  /**
+   * @description 检查队列是否为空
+   * @memberof Queue
+   */
+  isEmpty() {
+    return this.getSize() === 0;
+  }
+
+  /**
    * @desc 元素入队
    * @memberof Queue
    */
@@ -37,22 +53,6 @@ export class Queue<T = any> {
   }
 
   /**
-   * @description 获取队内元素数量
-   * @memberof Queue
-   */
-  getSize() {
-    return this.queue.length;
-  }
-
-  /**
-   * @description 检查队列是否为空
-   * @memberof Queue
-   */
-  isEmpty() {
-    return this.getSize() === 0;
-  }
-
-  /**
    * @description 获取队首元素
    * @memberof Queue
    */
@@ -66,5 +66,13 @@ export class Queue<T = any> {
    */
   getLast() {
     return this.isEmpty() ? null : this.queue[this.getSize() - 1];
+  }
+
+  /**
+   * @description 清空队列
+   * @memberof Queue
+   */
+  clear() {
+    this.queue = [];
   }
 }
