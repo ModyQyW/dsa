@@ -9,9 +9,7 @@
 - 线性结构
   - [x] [栈/堆栈](./src/stack/index.ts)
   - [x] [优先队列](./src/priority-queue/index.ts)
-  - [ ] 单向链表
-  - [ ] 双向链表
-  - [ ] 循环链表
+  - [x] [双向链表/双链表](./src/doubly-linked-list/index.ts)
 - 非线性结构
   - [ ] 无序树/自由树
   - [ ] 有序树
