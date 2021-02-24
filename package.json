@@ -41,7 +41,7 @@
     "lint:markdown": "markdownlint . --fix",
     "lint:script": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix",
     "test": "jest --coverage",
-    "dist": "yarn build && npm publish"
+    "dist": "yarn test && yarn build && npm publish"
   },
   "devDependencies": {
     "@modyqyw/fabric": "~1.16.1",
