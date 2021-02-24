@@ -39,7 +39,7 @@ export class PriorityQueue<T = any> {
    * @description 元素入队
    * @memberof PriorityQueue
    */
-  push(...rest: T[]): void {
+  push(...rest: T[]) {
     if (rest.length === 0) {
       throw new Error('需要提供入队元素');
     }

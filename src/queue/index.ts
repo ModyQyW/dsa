@@ -24,7 +24,7 @@ export class Queue<T = any> {
    * @desc 元素入队
    * @memberof Queue
    */
-  push(...rest: T[]): void {
+  push(...rest: T[]) {
     if (rest.length === 0) {
       throw new Error('需要提供入队元素');
     }
