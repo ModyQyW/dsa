@@ -6,10 +6,7 @@ export class PriorityQueue<T = any> {
 
   compareFn: null | ((a: T, b: T) => 0 | -1 | 1) = null;
 
-  constructor(compareFn?: (a: T, b: T) => 0 | -1 | 1, ...rest) {
-    if (rest.length !== 0) {
-      throw new Error('优先队列最多使用一个参数初始化');
-    }
+  constructor(compareFn?: (a: T, b: T) => 0 | -1 | 1) {
     if (isFunction(compareFn)) {
       this.compareFn = compareFn;
     } else if (compareFn !== undefined) {
