@@ -1,11 +1,35 @@
 # 数据结构与算法
 
-用 TypeScript 呈现的数据结构与算法。更新中。
+用 TypeScript 呈现的数据结构与算法。**更新中，不稳定，请勿用于生产环境。**
 
-支持 cjs，esm 和 iife，安装依赖或使用 CDN 引入后可以体验。
+## 安装
+
+### NPM
 
 ```shell
 npm i @modyqyw/dsa
+# yarn add @modyqyw/dsa
+```
+
+### CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@modyqyw/dsa/dist/index.iife.min.js"></script>
+```
+
+你可以直接使用 `window.DSA`。
+
+## 使用
+
+```javascript
+import { Stack, PriorityQueue, DoublyLinkedList } from '@modyqyw/dsa'; // esm
+// const { Stack, PriorityQueue, DoublyLinkedList } = require('@modyqyw/dsa'); // cjs
+
+// do something with them
+const stack = new Stack();
+const queue = new PriorityQueue();
+const list = new DoublyLinkedList();
+
 ```
 
 ## 数据结构部分
