@@ -8,3 +8,5 @@ tests
 .*.js
 .*ignore
 *.config.js
+*.sh
+CONTRIBUTING.md
