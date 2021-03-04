@@ -15,9 +15,11 @@ npm i @modyqyw/dsa
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@modyqyw/dsa/dist/index.iife.min.js"></script>
+<!-- or unpkg if you prefer -->
+<!-- <script src="https://unpkg.com/@modyqyw/dsa/dist/index.iife.min.js"></script> -->
 ```
 
-你可以直接使用 `window.DSA`。
+然后就可以直接使用 `window.DSA` 了。
 
 ## 使用
 
