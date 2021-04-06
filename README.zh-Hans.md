@@ -34,7 +34,10 @@ import {
   DoublyLinkedList,
   // algorithms
   bubbleSort,
-  shakerSort
+  mergeSort,
+  quickSort,
+  selectionSort,
+  shakerSort,
 } from '@modyqyw/dsa';
 // cjs
 const {
@@ -44,7 +47,10 @@ const {
   DoublyLinkedList,
   // algorithms
   bubbleSort,
-  shakerSort
+  mergeSort,
+  quickSort,
+  selectionSort,
+  shakerSort,
 } = require('@modyqyw/dsa');
 
 // do something with them
