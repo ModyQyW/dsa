@@ -16,6 +16,7 @@
     "moduleResolution": "Node",
     "paths": {
       "@/*": ["./src/*"],
+      "tslib": ["node_modules/tslib.d.ts"]
     },
     "types": ["jest", "node"],
     "forceConsistentCasingInFileNames": true,
