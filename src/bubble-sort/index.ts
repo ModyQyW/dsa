@@ -1,7 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import { isArray, isFunction, cloneDeep } from 'lodash-es';
 
-export function bubbleSort(array: any[], compareFn: (a, b) => -1 | 0 | 1) {
+export function bubbleSort<T>(
+  array: T[],
+  compareFn: (a: T, b: T) => -1 | 0 | 1,
+) {
   if (!isArray(array)) {
     throw new Error('You should pass a array as the first param.');
   }
