@@ -1,7 +1,7 @@
 {
   "name": "@modyqyw/dsa",
-  "version": "0.0.4",
-  "description": "Data structure and algorithms with TypeScript. Unstable yet!",
+  "version": "0.0.5",
+  "description": "Data structures and algorithms written in TypeScript. Unstable yet!",
   "author": {
     "email": "wurui7@mail3.sysu.edu.cn",
     "name": "ModyQyW",
