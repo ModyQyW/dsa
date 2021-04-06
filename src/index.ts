@@ -3,3 +3,4 @@ export * from './priority-queue';
 export * from './stack';
 
 export * from './bubble-sort';
+export * from './shaker-sort';
