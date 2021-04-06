@@ -8,7 +8,7 @@ describe('PriorityQueue 01', () => {
       // @ts-ignore
       const queue = new PriorityQueue<string | number>(null);
     }).toThrow(
-      '优先队列最多使用一个参数初始化，参数应当是一个方法，它接收两个参数，并返回 0，-1 或 1 表示比较结果',
+      'You should pass a function as the only param, which accepts two params and returns -1, 0 or 1.',
     );
     expect(priorityQueue.getSize()).toBe(0);
     expect(priorityQueue.isEmpty()).toBe(true);
@@ -19,12 +19,14 @@ describe('PriorityQueue 01', () => {
   });
 
   it('push nothing', () => {
-    expect(() => priorityQueue.push()).toThrow('需要提供入队元素');
+    expect(() => priorityQueue.push()).toThrow(
+      'You need to provide an element.',
+    );
   });
 
   it('pop float', () => {
-    expect(() => priorityQueue.pop(1.3)).toThrow('参数不合法');
-    expect(() => priorityQueue.pop(0.3)).toThrow('参数不合法');
+    expect(() => priorityQueue.pop(1.3)).toThrow('Invalid param.');
+    expect(() => priorityQueue.pop(0.3)).toThrow('Invalid param.');
   });
 
   it('push one element', () => {

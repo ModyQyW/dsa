@@ -1,7 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-continue, import/prefer-default-export */
 import { isFunction, isNumber } from 'lodash-es';
 
+// TODO: refactor with heap
 export class PriorityQueue<T = any> {
   priorityQueue: T[];
 
@@ -14,35 +14,35 @@ export class PriorityQueue<T = any> {
       this.compareFn = compareFn;
     } else if (compareFn !== undefined) {
       throw new Error(
-        '优先队列最多使用一个参数初始化，参数应当是一个方法，它接收两个参数，并返回 0，-1 或 1 表示比较结果',
+        'You should pass a function as the only param, which accepts two params and returns -1, 0 or 1.',
       );
     }
   }
 
-  /** 获取队列内元素数量 */
+  /** Get the size of the priority queue */
   getSize() {
     return this.priorityQueue.length;
   }
 
-  /** 检查队列是否为空 */
+  /** Check if the priority queue is empty */
   isEmpty() {
     return this.getSize() === 0;
   }
 
-  /** 获取队首元素 */
+  /** Get the first element */
   getFirst() {
     return this.isEmpty() ? null : this.priorityQueue[0];
   }
 
-  /** 获取队尾元素 */
+  /** get the last element */
   getLast() {
     return this.isEmpty() ? null : this.priorityQueue[this.getSize() - 1];
   }
 
-  /** 元素入队 */
+  /** push the element into the priority queue */
   push(...rest: T[]) {
     if (rest.length === 0) {
-      throw new Error('需要提供入队元素');
+      throw new Error('You need to provide an element.');
     }
     rest.forEach((item) => {
       this.priorityQueue.push(item);
@@ -52,23 +52,23 @@ export class PriorityQueue<T = any> {
     }
   }
 
-  /** 队首元素出队 */
+  /** pop the first element from the priority queue */
   pop(number?: number) {
     if (number === undefined) {
       this.priorityQueue.shift();
     } else if (isNumber(number) && number >= 1) {
       if (number.toFixed(2).slice(-2) !== '00') {
-        throw new Error('参数不合法');
+        throw new Error('Invalid param.');
       }
       for (let i = 0; i < number; i += 1) {
         this.priorityQueue.shift();
       }
     } else {
-      throw new Error('参数不合法');
+      throw new Error('Invalid param.');
     }
   }
 
-  /** 清空队列 */
+  /** clear */
   clear() {
     this.priorityQueue = [];
   }

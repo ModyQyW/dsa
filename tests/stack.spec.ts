@@ -12,12 +12,12 @@ describe('Stack', () => {
   });
 
   it('push nothing', () => {
-    expect(() => stack.push()).toThrow('需要提供入栈元素');
+    expect(() => stack.push()).toThrow('You need to provide an element.');
   });
 
   it('pop float', () => {
-    expect(() => stack.pop(1.3)).toThrow('参数不合法');
-    expect(() => stack.pop(0.3)).toThrow('参数不合法');
+    expect(() => stack.pop(1.3)).toThrow('Invalid param.');
+    expect(() => stack.pop(0.3)).toThrow('Invalid param.');
   });
 
   it('push one element', () => {

@@ -2,9 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 import { DoublyLinkedListNode } from './node';
 
-// PERF: 节点唯一化
-
-/** 双向链表 */
+// TODO: unique node
+// TODO: better comparison
 export class DoublyLinkedList<T = any> {
   head: DoublyLinkedListNode<T> | null = null;
 
@@ -12,27 +11,27 @@ export class DoublyLinkedList<T = any> {
 
   size = 0;
 
-  /** 获取双向链表头部 */
+  /** Get the head of the doubly linked list */
   getHead() {
     return this.head;
   }
 
-  /** 获取双向链表尾部 */
+  /** Get the tail of the doubly linked list */
   getTail() {
     return this.tail;
   }
 
-  /** 获取双向链表元素数量 */
+  /** Get the size of the doubly linked list */
   getSize() {
     return this.size;
   }
 
-  /** 检查双向链表是否味空 */
+  /** Check if the doubly linked list is empty */
   isEmpty() {
     return this.size === 0;
   }
 
-  /** 获取双向链表对应的数组 */
+  /** Get the corresponding array */
   getArray() {
     const array: T[] = [];
     let currentNode = this.head;
@@ -43,7 +42,7 @@ export class DoublyLinkedList<T = any> {
     return array;
   }
 
-  /** 获取从双向链表头部出发，值为特定值的第一个节点 */
+  /** Get the first node with a specific value, searching from the head */
   getNode(value: T) {
     let currentNode = this.head;
     while (currentNode) {
@@ -55,7 +54,7 @@ export class DoublyLinkedList<T = any> {
     return currentNode;
   }
 
-  /** 获取从双向链表尾部出发，值为特定值的第一个节点 */
+  /** Get the last node with a specific value, searching from the tail */
   getLastNode(value: T) {
     let currentNode = this.tail;
     while (currentNode) {
@@ -67,7 +66,7 @@ export class DoublyLinkedList<T = any> {
     return currentNode;
   }
 
-  /** 在双向链表特定节点之前添加一个值为特定值的节点 */
+  /** Add a node with a specific value before a specific node */
   addNodeBefore(node: DoublyLinkedListNode<T> | null, value: T) {
     const newNode = new DoublyLinkedListNode(value);
     if (node) {
@@ -87,7 +86,7 @@ export class DoublyLinkedList<T = any> {
     this.size += 1;
   }
 
-  /** 在双向链表特定节点之后添加一个值为特定值的节点 */
+  /** Add a node with a specific value after a specific node */
   addNodeAfter(node: DoublyLinkedListNode<T> | null, value: T) {
     const newNode = new DoublyLinkedListNode(value);
     if (node) {
@@ -107,7 +106,7 @@ export class DoublyLinkedList<T = any> {
     this.size += 1;
   }
 
-  /** 移除双向链表特定节点之前的节点 */
+  /** Remove the node before a specific node */
   removeNodeBefore(node: DoublyLinkedListNode<T> | null) {
     if (node) {
       const prevNode = node.prev;
@@ -126,7 +125,7 @@ export class DoublyLinkedList<T = any> {
     }
   }
 
-  /** 移除双向链表特定节点之后的节点 */
+  /** Remove the node after a specific node */
   removeNodeAfter(node: DoublyLinkedListNode<T> | null) {
     if (node) {
       const nextNode = node.next;
@@ -145,7 +144,7 @@ export class DoublyLinkedList<T = any> {
     }
   }
 
-  /** 清空双向链表 */
+  /** clear */
   clear() {
     this.head = null;
     this.tail = null;
