@@ -1,10 +1,10 @@
 # 数据结构与算法
 
-English | [简体中文](./README.zh-Hans.md)
+[English](./README.md) | 简体中文
 
-Data structure and algorithms in TypeScript. **Progressing. Unstable. Do not use in production.**
+用 TypeScript 呈现的数据结构与算法。**更新中，不稳定，请勿用于生产环境。**
 
-## Installation
+## 安装
 
 ### NPM
 
@@ -21,9 +21,9 @@ npm i @modyqyw/dsa
 <!-- <script src="https://unpkg.com/@modyqyw/dsa/dist/index.iife.min.js"></script> -->
 ```
 
-Then use `window.DSA` directly.
+然后就可以直接使用 `window.DSA` 了。
 
-## Usage
+## 使用
 
 ```javascript
 // esm
@@ -54,15 +54,15 @@ const list = new DoublyLinkedList();
 
 ```
 
-## Data Structure
+## 数据结构部分
 
 数组 Array 和字符串 String 内置，映射 Map、集合 Set 已包含在 ES6+ 标准中。
 
-- Linear Structure
-  - [x] [Stack](./src/stack/index.ts)
-  - [x] [Priority Queue](./src/priority-queue/index.ts)
-  - [x] [Doubly Linked List](./src/doubly-linked-list/index.ts)
-- Nonlinear Structure
+- 线性结构
+  - [x] [栈/堆栈](./src/stack/index.ts)
+  - [x] [优先队列](./src/priority-queue/index.ts)
+  - [x] [双向链表/双链表](./src/doubly-linked-list/index.ts)
+- 非线性结构
   - [ ] 无序树/自由树
   - [ ] 有序树
   - [ ] 二叉树
@@ -82,7 +82,7 @@ const list = new DoublyLinkedList();
   - [ ] 有向图
   - [ ] 哈希表/散列表
 
-## Algorithms
+## 算法部分
 
 - 评估 - 时间复杂度，空间复杂度，正确性，可读性，健壮性
 - 思想 - 递推法，递归法，穷举法，贪心算法，分治法，动态规划，迭代法，分支界限法，回溯法

@@ -1,7 +1,7 @@
 {
   "name": "@modyqyw/dsa",
-  "version": "0.0.3",
-  "description": "Data structures and algorithms with TypeScript. Unstable yet!",
+  "version": "0.0.4",
+  "description": "Data structure and algorithms with TypeScript. Unstable yet!",
   "author": {
     "email": "wurui7@mail3.sysu.edu.cn",
     "name": "ModyQyW",
@@ -41,7 +41,7 @@
     "lint:markdown": "markdownlint . --fix",
     "lint:script": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix",
     "test": "jest --coverage",
-    "dist": "yarn test && yarn build && npm publish"
+    "dist": "yarn test && yarn build && yarn publish"
   },
   "dependencies": {
     "lodash-es": "~4.17.21"
