@@ -87,3 +87,7 @@ const list = new DoublyLinkedList();
 - 评估 - 时间复杂度，空间复杂度，正确性，可读性，健壮性
 - 思想 - 递推法，递归法，穷举法，贪心算法，分治法，动态规划，迭代法，分支界限法，回溯法
 - 分类 - 基本算法，数据结构算法，数论与代数算法，几何算法，图论算法，动态规划，数值分析，加密算法，排序算法，检索算法，随机化算法，并行算法，启发式算法
+
+## Acknowledge
+
+- [jeffzh4ng - iruka](https://github.com/jeffzh4ng/iruka)
