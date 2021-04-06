@@ -2,7 +2,7 @@
 
 English | [简体中文](./README.zh-Hans.md)
 
-Data structure and algorithms in TypeScript. **Progressing. Unstable. Do not use in production.**
+Data structures and algorithms written in TypeScript, mainly aiming at education but also can be used in daily development. **Progressing. Unstable. Do not use in production.**
 
 ## Installation
 
@@ -54,7 +54,7 @@ const list = new DoublyLinkedList();
 
 ```
 
-## Data Structure
+## Data Structures
 
 数组 Array 和字符串 String 内置，映射 Map、集合 Set 已包含在 ES6+ 标准中。
 
