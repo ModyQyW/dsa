@@ -2,7 +2,9 @@
 
 English | [简体中文](./README.zh-Hans.md)
 
-Data structures and algorithms written in TypeScript, mainly aiming at education but also can be used in daily development. **Progressing. Unstable. Do not use in production.**
+This lib allows you to use data structures and algorithms that are not provided in JavaScript/TypeScript.
+
+**Developing.**
 
 ## Installation
 
