@@ -4,6 +4,10 @@
 
 这个库让你可以使用 JavaScript/TypeScript 中没有提供的数据结构和算法。
 
+[计划](https://github.com/ModyQyW/dsa/issues/5)
+
+[Github](https://github.com/ModyQyW/dsa#readme) | [Gitee](https://gitee.com/ModyQyW/dsa#readme)
+
 **开发中。**
 
 ## 安装

@@ -4,6 +4,10 @@ English | [简体中文](./README.zh-Hans.md)
 
 This lib allows you to use data structures and algorithms that are not provided in JavaScript/TypeScript.
 
+[Plan](https://github.com/ModyQyW/dsa/issues/5)
+
+[Github](https://github.com/ModyQyW/dsa#readme) | [Gitee](https://gitee.com/ModyQyW/dsa#readme)
+
 **Developing.**
 
 ## Installation
