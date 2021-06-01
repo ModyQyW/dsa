@@ -1,4 +1,6 @@
 /* eslint-disable class-methods-use-this */
+import { isInteger } from 'lodash-es';
+
 /* eslint-disable import/prefer-default-export */
 export class Heap<T = any> {
   heap: T[];
@@ -14,24 +16,40 @@ export class Heap<T = any> {
     return this.heap.length;
   }
 
+  isEmpty() {
+    return this.heap.length === 0;
+  }
+
   peek() {
     return this.heap[0];
   }
 
-  getParentIndex(nodeIndex) {
+  getParentIndex(nodeIndex: number) {
+    if (!isInteger(nodeIndex) || nodeIndex <= 0) {
+      throw new Error('The param should be a positive integer.');
+    }
     return Math.floor((nodeIndex - 1) / 2);
   }
 
-  getLeftChildIndex(nodeIndex) {
+  getLeftChildIndex(nodeIndex: number) {
+    if (!isInteger(nodeIndex) || nodeIndex < 0) {
+      throw new Error('The param should be a non-negative integer.');
+    }
     return 2 * nodeIndex + 1;
   }
 
-  getRightChildIndex(nodeIndex) {
+  getRightChildIndex(nodeIndex: number) {
+    if (!isInteger(nodeIndex) || nodeIndex < 0) {
+      throw new Error('The param should be a non-negative integer.');
+    }
     return 2 * nodeIndex + 2;
   }
 
-  shiftUp(nodeIndex) {
-    if (nodeIndex === 0) {
+  shiftUp(nodeIndex: number) {
+    if (!isInteger(nodeIndex) || nodeIndex < 0) {
+      throw new Error('The param should be a non-negative integer.');
+    }
+    if (nodeIndex === 0 || this.heap[nodeIndex] === undefined) {
       return;
     }
     const parentIndex = this.getParentIndex(nodeIndex);
@@ -44,26 +62,38 @@ export class Heap<T = any> {
     }
   }
 
-  shiftDown(nodeIndex) {
+  shiftDown(nodeIndex: number) {
+    if (!isInteger(nodeIndex) || nodeIndex < 0) {
+      throw new Error('The param should be a non-negative integer.');
+    }
+    if (this.heap[nodeIndex] === undefined) {
+      return;
+    }
     const leftChildIndex = this.getLeftChildIndex(nodeIndex);
-    if (this.compareFn(this.heap[leftChildIndex], this.heap[nodeIndex]) < 0) {
-      [this.heap[leftChildIndex], this.heap[nodeIndex]] = [
-        this.heap[nodeIndex],
-        this.heap[leftChildIndex],
-      ];
-      this.shiftDown(leftChildIndex);
+    if (this.heap[leftChildIndex]) {
+      if (this.compareFn(this.heap[leftChildIndex], this.heap[nodeIndex]) < 0) {
+        [this.heap[leftChildIndex], this.heap[nodeIndex]] = [
+          this.heap[nodeIndex],
+          this.heap[leftChildIndex],
+        ];
+        this.shiftDown(leftChildIndex);
+      }
     }
     const rightChildIndex = this.getRightChildIndex(nodeIndex);
-    if (this.compareFn(this.heap[rightChildIndex], this.heap[nodeIndex]) < 0) {
-      [this.heap[rightChildIndex], this.heap[nodeIndex]] = [
-        this.heap[nodeIndex],
-        this.heap[rightChildIndex],
-      ];
-      this.shiftDown(rightChildIndex);
+    if (this.heap[rightChildIndex]) {
+      if (
+        this.compareFn(this.heap[rightChildIndex], this.heap[nodeIndex]) < 0
+      ) {
+        [this.heap[rightChildIndex], this.heap[nodeIndex]] = [
+          this.heap[nodeIndex],
+          this.heap[rightChildIndex],
+        ];
+        this.shiftDown(rightChildIndex);
+      }
     }
   }
 
-  push(nodeValue) {
+  push(nodeValue: T) {
     this.heap.push(nodeValue);
     this.shiftUp(this.heap.length - 1);
   }
