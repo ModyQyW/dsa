@@ -66,6 +66,7 @@
     "lint-md-cli": "~0.1.2",
     "lint-staged": "~11.0.0",
     "markdownlint-cli": "~0.27.1",
+    "np": "~7.5.0",
     "prettier": "~2.3.0",
     "rollup": "~2.50.5",
     "rollup-plugin-dts": "~3.0.2",
