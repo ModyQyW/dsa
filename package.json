@@ -1,7 +1,7 @@
 {
   "name": "@modyqyw/dsa",
   "version": "0.0.5",
-  "description": "Use data structures and algorithms that are not provided in JavaScript/TypeScript. Developing.",
+  "description": "Shareable data structures and algorithms for different JavaScript/TypeScript projects.",
   "author": {
     "email": "wurui7@mail3.sysu.edu.cn",
     "name": "ModyQyW",

@@ -2,7 +2,7 @@
 
 English | [简体中文](./README.zh-Hans.md)
 
-This lib allows you to use data structures and algorithms that are not provided in JavaScript/TypeScript.
+Shareable data structures and algorithms for different JavaScript/TypeScript projects.
 
 [Plan](https://github.com/ModyQyW/dsa/issues/5)
 
